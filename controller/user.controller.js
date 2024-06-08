@@ -38,8 +38,13 @@ const createUser = async (req, res) => {
 
 
 // code to get User 
-const gerUser = async (req, res) => {
-
+const getUser = async (req, res) => {
+    try {
+      const users =  await User.find() ;
+       res.json(users)
+    } catch (error) {
+        res.status(400).json({ message: "Server Error "})
+    }
 }
 
 
@@ -70,5 +75,9 @@ const updateUser = async (req , res ) =>{
 
 export {
     createUser,
-    registeruser
+    registeruser,
+    updateUser,
+    getUserById,
+    deleteUser,
+    getUser,
 }
