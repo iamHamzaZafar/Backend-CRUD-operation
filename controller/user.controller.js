@@ -19,6 +19,7 @@ const registeruser = async (req, res) => {
 
 // Code for register User
 const createUser = async (req, res) => {
+
   const { userName, firstName, lastName } = req.body;
   if (!userName || !firstName || !lastName) {
     return res
@@ -31,7 +32,7 @@ const createUser = async (req, res) => {
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    res.status(400).json({ message: "User registration failedd" });
+    res.status(400).json({ message: "User registration Faied" });
   }
 };
 
@@ -51,7 +52,14 @@ const getUser = async (req, res) => {
 // Code to get User by id 
 
 const getUserById = async (req, res) => {
-
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        res.json(user);
+    } catch (error) {
+        console.error(error); // Log the error message to the console
+        res.status(500).json({ message: "Error fetching user" });
+    }
 }
 
 

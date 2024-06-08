@@ -7,6 +7,7 @@ const app = express() ;
 // configration settings
 
 app.use(express.json()) ;
+// app.use(express.urlencoded({ extended : true })) ;
 
 
 
