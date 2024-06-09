@@ -80,6 +80,12 @@ const deleteUser = async (req, res) => {
 // code to updateuser 
 const updateUser = async (req , res ) =>{
 
+    try {
+        const user = await  User.findByIdAndUpdate(req.params.id);
+    } catch (error) {
+        
+    }
+
 }
 
 
